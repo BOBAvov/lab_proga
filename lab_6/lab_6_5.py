@@ -1,13 +1,47 @@
-mass = list(map(int,input().split()))
-idx_0 = None
-idx_max = mass[0]
-for i,v in enumerate(mass):
+"""
+Автор:      Гашев Владимир Дмитриевич
+Группа:     ИУ7-12Б
+Лаба:       №6 — Списки
+Задание:    5. Поменять местами элементы по варианту.
+Вариант:    7 — Поменять местами последний нулевой и максимальный отрицательный.
+Описание:   Максимальный отрицательный — наибольшее по значению отрицательное число (наиболее «близкое» к нулю).
+            Если одного из требуемых элементов нет, выводится диагностическое сообщение.
+"""
+
+# Ввод списка целых чисел с проверкой
+while True:
+    try:
+        line = input("Введите элементы списка через пробел: ").strip()
+        if line == "":
+            print("Ошибка: список не должен быть пустым. Повторите ввод.")
+            continue
+        mass = list(map(int, line.split()))
+        break
+    except ValueError:
+        print("Ошибка: ввод должен содержать только целые числа. Повторите ввод.")
+
+# Поиск индекса последнего нулевого и индекса максимального отрицательного
+idx_last_zero = -1
+idx_max_neg = None
+
+i = 0
+while i < len(mass):
+    v = mass[i]
     if v == 0:
-        idx_0 = i
-    if v > mass[idx_max]:
-        idx_max = i
-if idx_0 is None:
-    print('В ведённом списке нет 0')
+        idx_last_zero = i
+    if v < 0:
+        if idx_max_neg is None or v > mass[idx_max_neg]:
+            idx_max_neg = i
+    i += 1
+
+# Проверки наличия требуемых элементов
+if idx_last_zero == -1 and idx_max_neg is None:
+    print("Во введённом списке нет ни нулевых, ни отрицательных элементов.")
+elif idx_last_zero == -1:
+    print("Во введённом списке нет нулевых элементов.")
+elif idx_max_neg is None:
+    print("Во введённом списке нет отрицательных элементов.")
 else:
-    mass[idx_0],mass[idx_max] =  mass[idx_max], mass[idx_0]
-    print(mass)
+    # Обмен значений
+    mass[idx_last_zero], mass[idx_max_neg] = mass[idx_max_neg], mass[idx_last_zero]
+    print("Список после обмена последнего нулевого и максимального отрицательного элементов:", mass)

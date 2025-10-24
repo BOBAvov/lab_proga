@@ -53,7 +53,7 @@ for i in range(n):
 
     current_len = 1
     for j in range(1, m):
-            if check.float_equal(matrix[i][j], matrix[i][j-1]):
+            if check.float_equal(matrix[i][j], matrix[i][j - 1]):
                 current_len += 1
             else:
                 current_len = 1

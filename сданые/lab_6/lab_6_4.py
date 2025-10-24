@@ -31,13 +31,13 @@ cur_start = 0
 i = 0
 while i < len(mass):
     x = mass[i]
-    if abs(x) % 2 == 1:  # x — нечётный
+    if x % 2 == 1:  # x — нечётный
         if cur_len == 0:
             cur_len = 1
             cur_start = i
         else:
             pred = mass[i - 1]
-            if abs(pred) % 2 == 1 and x * pred < 0:  # соседний элемент нечётный и знак чередуется
+            if pred % 2 == 1 and x * pred < 0:  # соседний элемент нечётный и знак чередуется
                 cur_len += 1
             else:
                 cur_len = 1

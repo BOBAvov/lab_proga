@@ -136,17 +136,30 @@ import math
 #     print(*i)
 
 
-n = int(input())
-for i in range(n):
-    for j in range(n):
-        print(i-j,end=" ")
-    print()
-print()
-for i in range(n):
-    for j in range(n):
-        print(n - i - j -1,end=" ")
-    print()
+# n = int(input())
+# for i in range(n):
+#     for j in range(n):
+#         print(i-j,end=" ")
+#     print()
+# print()
+# for i in range(n):
+#     for j in range(n):
+#         print(n - i - j -1,end=" ")
+#     print()
+#
+# for i in range(n):
+#     for j in range(n):
+#         if
+# a = [12]
+# print(id(a))
+# print(id(a[0]))
+# print(id(12))
+#
+# f = (1,2,3,[1,3])
+# f[3].append(1333)
+# print(f)
 
-for i in range(n):
-    for j in range(n):
-        if
+with open("1.txt","a+") as file:
+    file.write('123\n')
+
+file.write('63t872187')

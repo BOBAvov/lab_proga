@@ -8,33 +8,35 @@
 from val_input import input_matrix_size, input_char_matrix
 from val_output import print_char_matrix, print_info
 
+def char_upper(char:str) -> str:
+    return chr(ord(char)-32)
 
-def is_vowel(char):
+def char_lower(char:str) -> str:
+    return chr(ord(char)+32)
+
+
+def is_up_vowel(char):
     """Проверка, является ли символ гласной латинской буквой"""
-    vowels = "aeiouAEIOU"
+    vowels = "AEIOUY"
     return char in vowels
 
 
-def is_consonant(char):
+def is_low_consonant(char):
     """Проверка, является ли символ согласной латинской буквой"""
-    consonants = "bcdfghjklmnpqrstvwxyzBCDFGHJKLMNPQRSTVWXYZ"
+    consonants = "bcdfghjklmnpqrstvwxyz"
     return char in consonants
 
 
 def transform_char_matrix(matrix):
     """Преобразование матрицы символов: согласные -> заглавные, гласные -> строчные"""
-    rows = len(matrix)
-    cols = len(matrix[0])
-
-    for i in range(rows):
-        row = []
-        for j in range(cols):
-            if is_consonant(matrix[i][j]):
+    for i in range(len(matrix)):
+        for j in range(len(matrix[0])):
+            if is_low_consonant(matrix[i][j]):
                 # Согласные латинские буквы -> заглавные
-                matrix[i][j] = matrix[i][j].upper()
-            elif is_vowel(matrix[i][j]):
+                matrix[i][j] = char_upper(matrix[i][j])
+            elif is_up_vowel(matrix[i][j]):
                 # Гласные латинские буквы -> строчные
-                matrix[i][j] = matrix[i][j].lower()
+                matrix[i][j] = char_lower(matrix[i][j])
 
 
 

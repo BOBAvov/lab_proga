@@ -1,12 +1,12 @@
 """
 Автор:      Гашев Владимир Дмитриевич
 Группа:     ИУ7-12Б
-Назначение: Программа 7 - Работа с трехмерным массивом и вывод среза
+Назначение: Работа с трехмерным массивом и вывод среза
 Вариант:    9
 """
 
 from val_input import input_dimensions_3d, input_3d_array
-from val_output import print_3d_array, print_slice_matrix, print_info
+from val_output import print_3d_array, print_info, print_ans,print_matrix
 
 
 def find_max_dimension(x, y, z):
@@ -54,13 +54,10 @@ def extract_slice(array_3d, max_dim, slice_index):
 
 
 def main():
-    print_info("Программа 7: Работа с трехмерным массивом")
-    print_info("Вывод среза по наибольшему измерению")
-    
     # Ввод размеров трехмерного массива
     x, y, z = input_dimensions_3d()
     
-    print_info(f"\nРазмеры трехмерного массива: {x} x {y} x {z}")
+    print_info(f"Размеры трехмерного массива: {x} x {y} x {z}")
     
     # Ввод трехмерного массива
     array_3d = input_3d_array(x, y, z)
@@ -70,18 +67,16 @@ def main():
     
     # Определение наибольшего измерения
     max_dim, max_size = find_max_dimension(x, y, z)
-    dimension_names = ['X', 'Y', 'Z']
-    print_info(f"\nНаибольшее измерение: {dimension_names[max_dim]} (размер: {max_size})")
+    names = ['X', 'Y', 'Z']
+    print_info(f"\nНаибольшее измерение: {names[max_dim]} (размер: {max_size})")
     
     # Вычисление индекса среза
     slice_index = get_slice_index(max_size)
-    print_info(f"Индекс среза (середина с округлением в меньшую сторону): {slice_index}")
+    print_ans(f"Индекс среза (середина с округлением в меньшую сторону): ",slice_index)
     
     # Извлечение и вывод среза
     slice_matrix = extract_slice(array_3d, max_dim, slice_index)
-    print_slice_matrix(slice_matrix, "Срез трехмерного массива:", max_dim, slice_index)
-    
-    print_info("\nПрограмма завершена.")
+    print_matrix(slice_matrix, "Срез трехмерного массива:")
 
 
 if __name__ == "__main__":

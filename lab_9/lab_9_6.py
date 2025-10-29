@@ -1,7 +1,7 @@
 """
 Автор:      Гашев Владимир Дмитриевич
 Группа:     ИУ7-12Б
-Назначение: Программа 6 - Преобразование матрицы символов
+Назначение: Преобразование матрицы символов
 Вариант:    9
 """
 
@@ -25,34 +25,20 @@ def transform_char_matrix(matrix):
     """Преобразование матрицы символов: согласные -> заглавные, гласные -> строчные"""
     rows = len(matrix)
     cols = len(matrix[0])
-    
-    # Создаем копию матрицы для преобразования
-    transformed_matrix = []
+
     for i in range(rows):
         row = []
         for j in range(cols):
-            char = matrix[i][j]
-            
-            if is_consonant(char):
+            if is_consonant(matrix[i][j]):
                 # Согласные латинские буквы -> заглавные
-                row.append(char.upper())
-            elif is_vowel(char):
+                matrix[i][j] = matrix[i][j].upper()
+            elif is_vowel(matrix[i][j]):
                 # Гласные латинские буквы -> строчные
-                row.append(char.lower())
-            else:
-                # Остальные символы остаются без изменений
-                row.append(char)
-        
-        transformed_matrix.append(row)
-    
-    return transformed_matrix
+                matrix[i][j] = matrix[i][j].lower()
+
 
 
 def main():
-    print_info("Программа 6: Преобразование матрицы символов")
-    print_info("Согласные латинские буквы -> заглавные")
-    print_info("Гласные латинские буквы -> строчные")
-    
     # Ввод размеров матрицы
     rows, cols = input_matrix_size("символов")
     
@@ -64,35 +50,10 @@ def main():
     print_char_matrix(matrix, "Исходная матрица символов:")
     
     # Преобразование матрицы
-    transformed_matrix = transform_char_matrix(matrix)
+    transform_char_matrix(matrix)
     
     # Вывод преобразованной матрицы
-    print_char_matrix(transformed_matrix, "Преобразованная матрица символов:")
-    
-    # Подсчет изменений
-    consonant_count = 0
-    vowel_count = 0
-    unchanged_count = 0
-    
-    for i in range(rows):
-        for j in range(cols):
-            original = matrix[i][j]
-            transformed = transformed_matrix[i][j]
-            
-            if original != transformed:
-                if is_consonant(original):
-                    consonant_count += 1
-                elif is_vowel(original):
-                    vowel_count += 1
-            else:
-                unchanged_count += 1
-    
-    print_info(f"\nСтатистика преобразования:")
-    print_info(f"Согласных букв преобразовано: {consonant_count}")
-    print_info(f"Гласных букв преобразовано: {vowel_count}")
-    print_info(f"Символов без изменений: {unchanged_count}")
-    
-    print_info("\nПрограмма завершена.")
+    print_char_matrix(matrix, "Преобразованная матрица символов:")
 
 
 if __name__ == "__main__":

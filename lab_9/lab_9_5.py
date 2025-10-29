@@ -4,7 +4,7 @@
 Назначение: Умножение матриц A и B
 Вариант:    9
 """
-
+from lab_9.val_output import print_warn
 from val_input import input_matrix_size, input_matrix_int
 from val_output import print_matrix, print_info
 
@@ -13,7 +13,6 @@ def multiply_matrices(matrix_a, matrix_b):
     """Умножение матриц A и B"""
     rows_a = len(matrix_a)
     cols_a = len(matrix_a[0])
-    rows_b = len(matrix_b)
     cols_b = len(matrix_b[0])
     
     # Создаем результирующую матрицу
@@ -31,8 +30,6 @@ def multiply_matrices(matrix_a, matrix_b):
 
 
 def main():
-    print_info("Программа 5: Умножение матриц A и B")
-    print_info("Получение матрицы C = A * B")
     
     # Ввод размеров матрицы A
     print_info("Ввод размеров матрицы A:")
@@ -44,16 +41,14 @@ def main():
     
     # Проверка возможности умножения матриц
     if cols_a != rows_b:
-        print_info("Ошибка: количество столбцов матрицы A должно равняться количеству строк матрицы B.")
+        print_warn("Ошибка: количество столбцов матрицы A должно равняться количеству строк матрицы B.")
         print_info(f"Матрица A: {rows_a} x {cols_a}")
         print_info(f"Матрица B: {rows_b} x {cols_b}")
         return
     
     # Ввод матриц
-    print_info("\nВвод матрицы A:")
     matrix_a = input_matrix_int(rows_a, cols_a, "A")
-    
-    print_info("\nВвод матрицы B:")
+
     matrix_b = input_matrix_int(rows_b, cols_b, "B")
     
     # Вывод исходных матриц
@@ -64,14 +59,7 @@ def main():
     matrix_c = multiply_matrices(matrix_a, matrix_b)
     
     # Вывод результирующей матрицы
-    print_matrix(matrix_c, "Матрица C (результат умножения A * B):")
-    
-    print_info(f"\nРазмеры матриц:")
-    print_info(f"Матрица A: {rows_a} x {cols_a}")
-    print_info(f"Матрица B: {rows_b} x {cols_b}")
-    print_info(f"Матрица C: {rows_a} x {cols_b}")
-    
-    print_info("\nПрограмма завершена.")
+    print_matrix(matrix_c, "Матрица C:")
 
 
 if __name__ == "__main__":

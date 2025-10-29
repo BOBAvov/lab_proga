@@ -6,10 +6,7 @@
 """
 
 from val_input import input_matrix_size, input_matrix_int, input_size, input_array_int
-from val_output import print_matrix, print_array, print_info, print_warn
-
-
- 
+from val_output import print_matrix, print_array, print_info, print_warn,print_ans
 
 
 def find_max_in_rows(matrix, row_indices):
@@ -45,9 +42,6 @@ def calculate_average(array):
 
 
 def main():
-    print_info("Программа 4: Поиск максимальных элементов в заданных строках матрицы D")
-    print_info("Определение среднего арифметического максимальных значений")
-    
     # Ввод размеров матрицы D
     rows_d, cols_d = input_matrix_size("D")
     
@@ -64,17 +58,16 @@ def main():
     
     # Вывод исходных данных
     print_matrix(matrix_d, "Матрица D:")
-    print_array(array_i, "Массив I")
+    print_ans("Массив I: ",array_i)
     
     # Поиск максимальных элементов в заданных строках
     array_r = find_max_in_rows(matrix_d, array_i)
-    print_array(array_r, "Массив R (максимальные элементы)")
+    print_ans("Массив R (максимальные элементы)", array_r)
     
     # Вычисление среднего арифметического
     average = calculate_average(array_r)
-    print_info(f"\nСреднее арифметическое максимальных значений: {average:.6f}")
-    
-    print_info("\nПрограмма завершена.")
+    print_ans(f"\nСреднее арифметическое максимальных значений:", average)
+
 
 
 if __name__ == "__main__":

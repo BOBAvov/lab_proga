@@ -13,42 +13,35 @@ from val_output import print_matrix, print_info
 def rotate_clockwise(matrix):
     """Поворот матрицы на 90 градусов по часовой стрелке"""
     n = len(matrix)
-    # Поворачиваем матрицу на месте
-    # Сначала транспонируем
-    for i in range(n):
-        for j in range(i + 1, n):
-            matrix[i][j], matrix[j][i] = matrix[j][i], matrix[i][j]
-    
-    # Затем отражаем по горизонтали
-    for i in range(n):
-        for j in range(n // 2):
-            matrix[i][j], matrix[i][n - 1 - j] = matrix[i][n - 1 - j], matrix[i][j]
+    # Поворачиваем матрицу
+    for i in range(n//2):
+        for j in range(i,n-1-i):
+            save = matrix[i][j]
+            matrix[i][j] = matrix[n-j-1][i]
+            matrix[n-j-1][i] = matrix[n-i-1][n-j-1]
+            matrix[n-i-1][n-j-1] = matrix[j][n-i-1]
+            matrix[j][n-i-1] = save
+
 
 
 def rotate_counterclockwise(matrix):
     """Поворот матрицы на 90 градусов против часовой стрелки"""
     n = len(matrix)
-    # Поворачиваем матрицу на месте
-    # Сначала транспонируем
-    for i in range(n):
-        for j in range(i + 1, n):
-            matrix[i][j], matrix[j][i] = matrix[j][i], matrix[i][j]
-    
-    # Затем отражаем по вертикали
-    for i in range(n // 2):
-        for j in range(n):
-            matrix[i][j], matrix[n - 1 - i][j] = matrix[n - 1 - i][j], matrix[i][j]
+    for i in range(n//2):
+        for j in range(i, n-i-1):
+            save = matrix[i][j]
+            matrix[i][j] = matrix[j][n - 1 - i]
+            matrix[j][n - 1 - i] = matrix[n - 1 - i][n - 1 - j]
+            matrix[n - 1 - i][n - 1 - j] = matrix[n - 1 - j][i]
+            matrix[n - 1 - j][i] = save
 
 
 def main():
-    print_info("Программа 2: Поворот квадратной матрицы")
-    print_info("Поворот на 90° по часовой стрелке, затем на 90° против часовой стрелки")
-    
     # Ввод размера матрицы
     n = input_square_size()
     
     # Ввод исходной матрицы
-    matrix = input_matrix_int(n, n, "")
+    matrix = input_matrix_int(n, n, "N")
     
     # Создаем копии для промежуточных состояний
     matrix_copy1 = deepcopy(matrix)  # Копия для первого поворота
@@ -64,9 +57,6 @@ def main():
     # Поворот на 90° против часовой стрелки (из промежуточного состояния)
     rotate_counterclockwise(matrix_copy2)
     print_matrix(matrix_copy2, "После поворота на 90° против часовой стрелки:")
-    
-    print_info("\nПрограмма завершена.")
-
 
 if __name__ == "__main__":
     main()

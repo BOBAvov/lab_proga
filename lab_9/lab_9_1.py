@@ -7,7 +7,7 @@
 
 import math
 from val_input import input_size, input_array_int
-from val_output import print_matrix_with_column, print_info
+from val_output import print_matrix_with_column, print_ans
 
 def is_perfect_square(num):
     """Проверка, является ли число полным квадратом"""
@@ -27,10 +27,6 @@ def count_perfect_squares_in_row(matrix, row):
 
 
 def main():
-    print_info("Программа 1: Создание матрицы M из массивов A и B")
-    print_info("Формула: m[i][j] = a[i] * b[j]")
-    print_info("Подсчет полных квадратов в каждой строке матрицы M")
-    
     # Ввод размеров массивов
     n_a = input_size("A")
     n_b = input_size("B")
@@ -56,9 +52,9 @@ def main():
     # Вывод результата
     print_matrix_with_column(matrix, list_s, "Матрица M и массив S (количество полных квадратов в строках):")
     
-    print_info(f"\nМассив A: {list_a}")
-    print_info(f"Массив B: {list_b}")
-    print_info(f"Массив S: {list_s}")
+    print_ans(f"Массив A:", list_a)
+    print_ans(f"Массив B:", list_b)
+    print_ans(f"Массив S:", list_s)
 
 
 if __name__ == "__main__":
